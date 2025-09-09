@@ -17,7 +17,7 @@ return (
       <h2>Things I Find Cute</h2>
       <form action={addThings} className="input-cnt">
         <input type="text" name="textInput" />
-        <button onClick={addThings}>Reveal</button>
+        <button type="submit">Add</button>
       </form>
 
       <ul>
