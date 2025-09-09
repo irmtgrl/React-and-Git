@@ -1,21 +1,25 @@
 import './App.css'
-import React from 'react'
+import { useState } from 'react'
 
 function App() {
-  const [cuteStuff, setCuteStuff] = React.useState([])
+  const [cuteStuff, setCuteStuff] = useState([])
+  const displayThings = cuteStuff.map(thing =>  <li key={thing}>{thing}</li>)
 
-  const thingsIFindCute = ["Cats", "Happiness", "Books", "Wine"]
-  const displayThings = cuteStuff.map(thing => thing ? <li key={thing}>{thing}</li> : <p>That was it:(</p>)
-
-  function revealThings() {
-    setCuteStuff(prevThing => [...prevThing, thingsIFindCute[cuteStuff.length]])
+  function addThings(formData) {
+    const newItem = formData.get("textInput")
+    setCuteStuff(prevThings => [...prevThings, newItem])
+    
   }
 
 return (
   <main>
     <section>
       <h2>Things I Find Cute</h2>
-      <button onClick={revealThings}>Reveal</button>
+      <form action={addThings} className="input-cnt">
+        <input type="text" name="textInput" />
+        <button onClick={addThings}>Reveal</button>
+      </form>
+
       <ul>
         {displayThings}
       </ul>
